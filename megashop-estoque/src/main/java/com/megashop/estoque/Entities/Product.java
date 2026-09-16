@@ -1,7 +1,13 @@
 package com.megashop.estoque.Entities;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "products")
 public class Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private Double price;
@@ -12,6 +18,9 @@ public class Product {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
+    }
+
+    public Product() {
     }
 
     public Long getId() {
@@ -44,5 +53,15 @@ public class Product {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                '}';
     }
 }

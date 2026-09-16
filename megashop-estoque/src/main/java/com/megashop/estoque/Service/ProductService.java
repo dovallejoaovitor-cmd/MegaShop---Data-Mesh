@@ -28,12 +28,39 @@ public class ProductService {
                 .orElseThrow(()-> new RuntimeException(("Produto não encontrado!")));
     }
 
-    public Product update(Long id, Product product){
+    public Product updatePriceQuantity(Long id, Product product){
         Product existing = findById(id);
 
-        existing.setName(product.getName());
+        if(existing ==  null){
+            throw new RuntimeException(("Produto não encontrado"));
+        }
+
         existing.setPrice(product.getPrice());
         existing.setQuantity(product.getQuantity());
+
+        return repository.save(existing);
+    }
+
+    public Product updateQuantity(Long id, Product product){
+        Product existing = findById(id);
+
+        if(existing ==  null){
+            throw new RuntimeException(("Produto não encontrado"));
+        }
+
+        existing.setQuantity(product.getQuantity());
+
+        return repository.save(existing);
+    }
+
+    public Product updatePrice(Long id, Product product){
+        Product existing = findById(id);
+
+        if(existing ==  null){
+            throw new RuntimeException(("Produto não encontrado"));
+        }
+
+        existing.setPrice(product.getPrice());
 
         return repository.save(existing);
     }
